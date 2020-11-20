@@ -2,12 +2,12 @@ import React from 'react';
 
 function Search(props) {
     return (
-        <div className="searchBar">
+        <form className="searchBar">
             <input type="search"
             placeholder="Search"
-
             />
-        </div>
+            <input type="submit" value="Submit"/>
+        </form>
     )
 }
 export default Search;
