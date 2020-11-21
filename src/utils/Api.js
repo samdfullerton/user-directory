@@ -1,9 +1,22 @@
-import axios from 'axios';
+const faker = require("faker");
 
+const employeeData = [];
 
+for(let i = 0; i < 200; i++) {
+  let employee = {
+    name: {
+      first: faker.name.firstName(),
+      last: faker.name.lastName()
+    },
+    dob: {
+      date: faker.date.past().toString()
+    },
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
 
-export default {
-    getRandomUser: function() {
-        return axios.get("https://randomuser.me/api/?results=200&nat=us");
-      }
-};
+  }
+  employeeData.push(employee);
+}
+console.log(employeeData);
+
+module.exports = employeeData

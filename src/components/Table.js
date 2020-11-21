@@ -1,16 +1,17 @@
-import React, {useState} from 'react'
-import api from "../utils/Api.js"
+import React, { useState, useEffect } from 'react'
+import employeeData from "../utils/Api.js"
 import TableRow from "./TableRow.js"
+
 const Table = () => {
     const [employees, setEmployees] = useState([])
-    const getData = async () => {
-        const result = await api.getRandomUser()
-        setEmployees(result.data.results)
-    }
+    useEffect(() => {
+        setEmployees(employeeData)
+    }, [employees])
+
     return (
         <div>
-            <button onClick={getData}>Get Data</button>
             <table>
+                <thead>
                 <tr>
                     <th>Firstname</th>
                     <th>Lastname</th>
@@ -18,9 +19,10 @@ const Table = () => {
                     <th>Email</th>
                     <th>Phone Number</th>
                 </tr>
+                </thead>
                 <tbody>
-                    {employees.map(employee => {
-                        return <TableRow employee = {employee}/>
+                    {employees.map((employee, index) => {
+                        return <TableRow employee={employee} key = {index} />
                     })}
                 </tbody>
             </table>
